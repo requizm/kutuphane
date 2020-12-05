@@ -32,15 +32,11 @@ public class YayineviService {
     }
 
     public boolean update(Yayinevi yazar) {
-
-        // if (yayineviRepository.findById(id).isPresent()) {
         yayineviRepository.save(yazar);
         return true;
-        // }
-        // return false;
     }
 
-    public boolean delete(Integer id) {
+    public void delete(Integer id) {
 
         if (yayineviRepository.findById(id).isPresent()) {
             Yayinevi yayinevi = yayineviRepository.findById(id).get();
@@ -51,8 +47,6 @@ public class YayineviService {
                 }
             }
             yayineviRepository.deleteById(id);
-            return true;
         }
-        return false;
     }
 }

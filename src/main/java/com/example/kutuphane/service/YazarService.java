@@ -32,16 +32,11 @@ public class YazarService {
         yazarRepository.save(yazar);
     }
 
-    public boolean update(Yazar yazar) {
-
-        // if (yazarRepository.findById(id).isPresent()) {
+    public void update(Yazar yazar) {
         yazarRepository.save(yazar);
-        return true;
-        // }
-        // return false;
     }
 
-    public boolean delete(Integer id) {
+    public void delete(Integer id) {
 
         if (yazarRepository.findById(id).isPresent()) {
             Yazar yazar = yazarRepository.findById(id).get();
@@ -52,8 +47,6 @@ public class YazarService {
                 }
             }
             yazarRepository.deleteById(id);
-            return true;
         }
-        return false;
     }
 }
