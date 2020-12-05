@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yazar Güncelle</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Yazar Güncelle</h1>
+        <br />
+
+        <form action="#" th:action="@{/yazar/degistir}" th:object="${yazar}" method="POST">
+            <table>
+                <tr>
+                    <td>Yazar id</td>
+                    <td><input type="text" th:field="*{id}" readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <td>Yazar Adı</td>
+                    <td><input type="text" maxlength="25" th:field="*{ad}"></td>
+                </tr>
+                <tr>
+                    <td>Yazar Açıklaması</td>
+                    <td><input type="text" maxlength="45" th:field="*{aciklama}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Güncelle</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+
+</html>

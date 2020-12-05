@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kitaplar</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Kitaplar</h1>
+        <table border="1">
+            <caption>kitaplar</caption>
+            <thead>
+                <tr>
+                    <th>Kitap id</th>
+                    <th>Kitap Adı</th>
+                    <th>Kitap Alt Adı</th>
+                    <th>Kitap Seri Adı</th>
+                    <th>Yazar Adı</th>
+                    <th>Yayınevi Adı</th>
+                    <th>ISBN</th>
+                    <th>Kitap Açıklama</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tr th:each="kitap : ${kitaplar}">
+                <td th:text="${kitap.id}">Kitap id</td>
+                <td th:text="${kitap.ad}">Kitap Adı</td>
+                <td th:text="${kitap.altAdi}">Kitap Alt Adı</td>
+                <td th:text="${kitap.seriAdi}">Kitap Seri Adı</td>
+                <td th:text="${kitap.yazar.ad}">Yazar Adı</td>
+                <td th:text="${kitap.yayinevi.ad}">Yayınevi Adı</td>
+                <td th:text="${kitap.isbnNumarasi}">ISBN</td>
+                <td th:text="${kitap.aciklama}">Kitap Açıklama</td>
+                <td>
+                    <a th:href="@{'/kitap/guncelle/' + ${kitap.id}}">Guncelle</a>
+                    <a th:href="@{'/kitap/sil/' + ${kitap.id}}">Sil</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

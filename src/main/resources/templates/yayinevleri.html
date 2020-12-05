@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yayın Evleri</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Yayın Evleri</h1>
+        <table border="1">
+            <caption>Yayın Evleri</caption>
+            <thead>
+                <tr>
+                    <th>Yayınevi id</th>
+                    <th>Yayınevi Adı</th>
+                    <th>Yayınevi Açıklama</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tr th:each="yayinevi : ${yayinevleri}">
+                <td th:text="${yayinevi.id}">Yayınevi id</td>
+                <td th:text="${yayinevi.ad}">Yayınevi Adı</td>
+                <td th:text="${yayinevi.aciklama}">Yayınevi Açıklama</td>
+                <td>
+                    <a th:href="@{'/yayinevi/guncelle/' + ${yayinevi.id}}">Guncelle</a>
+                    <a th:href="@{'/yayinevi/sil/' + ${yayinevi.id}}">Sil</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>

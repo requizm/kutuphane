@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yayınevi Ekle</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Yayınevi Ekle</h1>
+        <br />
+
+        <form action="#" th:action="@{/yayinevi/yeni}" th:object="${yayinevi}" method="POST">
+            <table>
+                <tr>
+                    <td>Yayınevi Adı</td>
+                    <td><input type="text" maxlength="25" th:field="*{ad}"></td>
+                </tr>
+                <tr>
+                    <td>Yayınevi Açıklaması</td>
+                    <td><input type="text" maxlength="45" th:field="*{aciklama}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Ekle</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+
+</html>

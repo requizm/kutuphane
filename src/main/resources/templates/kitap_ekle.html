@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kitap Ekle</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Kitap Ekle</h1>
+        <br />
+
+        <form action="#" th:action="@{/kitap/yeni}" th:object="${kitap}" method="POST">
+            <table>
+                <tr>
+                    <td>Kitap Adı</td>
+                    <td><input type="text" maxlength="25" th:field="*{ad}"></td>
+                </tr>
+                <tr>
+                    <td>Kitap Alt Adı</td>
+                    <td><input type="text" maxlength="25" th:field="*{altAdi}"></td>
+                </tr>
+                <tr>
+                    <td>Kitap Seri Adı</td>
+                    <td><input type="text" maxlength="25" th:field="*{seriAdi}"></td>
+                </tr>
+                <tr>
+                    <td>Yazarlar</td>
+                    <td>
+                        <select th:field="*{yazar}">
+                            <option th:each="yazarr : ${yazarlar}" th:value="${yazarr.id}" th:text="${yazarr.ad}" />
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Yayınevleri</td>
+                    <td>
+                        <select th:field="*{yayinevi}">
+                            <option th:each="yayinevii : ${yayinevleri}" th:value="${yayinevii.id}"
+                                th:text="${yayinevii.ad}" />
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ISBN</td>
+                    <td><input type="text" maxlength="13" th:field="*{isbnNumarasi}"></td>
+                </tr>
+                <tr>
+                    <td>Kitap Açıklaması</td>
+                    <td><input type="text" maxlength="45" th:field="*{aciklama}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Ekle</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+</body>
+
+</html>
