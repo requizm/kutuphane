@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Arama Yap</title>
+</head>
+
+<body>
+    <div>
+        <h1>Arama Yap</h1>
+        <form action="#" th:action="@{/ara/islem}" th:object="${ara}" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        <select th:field="*{i}">
+                            <option value="0">Kitap Adı</option>
+                            <option value="1">Seri Adı</option>
+                            <option value="2">Yazar</option>
+                            <option value="3">ISBN</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{text}" oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required>
+                    </td>
+                </tr>
+                <tr>
+                    <button type="submit">Arama Yap</button>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

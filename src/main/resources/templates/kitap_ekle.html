@@ -16,15 +16,16 @@
             <table>
                 <tr>
                     <td>Kitap Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{ad}"></td>
+                    <td><input type="text" maxlength="25" th:field="*{ad}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>Kitap Alt Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{altAdi}"></td>
+                    <td><input type="text" maxlength="25" th:field="*{altAdi}" required></td>
                 </tr>
                 <tr>
                     <td>Kitap Seri Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{seriAdi}"></td>
+                    <td><input type="text" maxlength="25" th:field="*{seriAdi}" required></td>
                 </tr>
                 <tr>
                     <td>Yazarlar</td>
@@ -45,11 +46,13 @@
                 </tr>
                 <tr>
                     <td>ISBN</td>
-                    <td><input type="text" maxlength="13" th:field="*{isbnNumarasi}"></td>
+                    <td><input type="text" maxlength="13" th:field="*{isbnNumarasi}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>Kitap Açıklaması</td>
-                    <td><input type="text" maxlength="45" th:field="*{aciklama}"></td>
+                    <td><input type="text" maxlength="45" th:field="*{aciklama}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>

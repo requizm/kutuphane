@@ -20,11 +20,13 @@
                 </tr>
                 <tr>
                     <td>Yazar Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{ad}"></td>
+                    <td><input type="text" maxlength="25" th:field="*{ad}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>Yazar Açıklaması</td>
-                    <td><input type="text" maxlength="45" th:field="*{aciklama}"></td>
+                    <td><input type="text" maxlength="45" th:field="*{aciklama}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>

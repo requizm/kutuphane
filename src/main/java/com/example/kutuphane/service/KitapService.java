@@ -1,10 +1,10 @@
 package com.example.kutuphane.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.example.kutuphane.model.Kitap;
-import com.example.kutuphane.model.Yazar;
 import com.example.kutuphane.repository.KitapRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +43,15 @@ public class KitapService {
         return kitapRepository.findBySeriAdi(seriAdi);
     }
 
-    public List<Kitap> findByYazar(Yazar yazar) {
-        return kitapRepository.findByYazar(yazar);
+    public List<Kitap> findByYazarAdi(String yazarAdi) {
+        List<Kitap> kitaplar = kitapRepository.findAll();
+        List<Kitap> sonucKitaplar = new ArrayList<Kitap>();
+        for (int i = 0; i < kitaplar.size(); i++) {
+            if (kitaplar.get(i).getYazar().getAd().equals(yazarAdi)) {
+                sonucKitaplar.add(kitaplar.get(i));
+            }
+        }
+        return sonucKitaplar;
     }
 
     public void delete(Integer id) {
