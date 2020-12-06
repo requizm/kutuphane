@@ -25,11 +25,13 @@
                 </tr>
                 <tr>
                     <td>Kitap Alt Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{altAdi}" required></td>
+                    <td><input type="text" maxlength="25" th:field="*{altAdi}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>Kitap Seri Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{seriAdi}" required></td>
+                    <td><input type="text" maxlength="25" th:field="*{seriAdi}"
+                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
                 </tr>
                 <tr>
                     <td>Yazar</td>

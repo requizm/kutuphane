@@ -32,22 +32,43 @@ public class KitapService {
     }
 
     public List<Kitap> findByIsbn(String isbn) {
-        return kitapRepository.findByIsbnNumarasi(isbn);
+        List<Kitap> kitaplar = kitapRepository.findAll();
+        List<Kitap> sonucKitaplar = new ArrayList<>();
+        for (int i = 0; i < kitaplar.size(); i++) {
+            if (simpleTextSearch(isbn.toCharArray(), kitaplar.get(i).getIsbnNumarasi().toCharArray())) {
+                sonucKitaplar.add(kitaplar.get(i));
+            }
+        }
+        return sonucKitaplar;
     }
 
     public List<Kitap> findByAd(String ad) {
-        return kitapRepository.findByAd(ad);
+        List<Kitap> kitaplar = kitapRepository.findAll();
+        List<Kitap> sonucKitaplar = new ArrayList<>();
+        for (int i = 0; i < kitaplar.size(); i++) {
+            if (simpleTextSearch(ad.toCharArray(), kitaplar.get(i).getAd().toCharArray())) {
+                sonucKitaplar.add(kitaplar.get(i));
+            }
+        }
+        return sonucKitaplar;
     }
 
     public List<Kitap> findBySeriAdi(String seriAdi) {
-        return kitapRepository.findBySeriAdi(seriAdi);
+        List<Kitap> kitaplar = kitapRepository.findAll();
+        List<Kitap> sonucKitaplar = new ArrayList<>();
+        for (int i = 0; i < kitaplar.size(); i++) {
+            if (simpleTextSearch(seriAdi.toCharArray(), kitaplar.get(i).getSeriAdi().toCharArray())) {
+                sonucKitaplar.add(kitaplar.get(i));
+            }
+        }
+        return sonucKitaplar;
     }
 
     public List<Kitap> findByYazarAdi(String yazarAdi) {
         List<Kitap> kitaplar = kitapRepository.findAll();
-        List<Kitap> sonucKitaplar = new ArrayList<Kitap>();
+        List<Kitap> sonucKitaplar = new ArrayList<>();
         for (int i = 0; i < kitaplar.size(); i++) {
-            if (kitaplar.get(i).getYazar().getAd().equals(yazarAdi)) {
+            if (simpleTextSearch(yazarAdi.toCharArray(), kitaplar.get(i).getYazar().getAd().toCharArray())) {
                 sonucKitaplar.add(kitaplar.get(i));
             }
         }
@@ -59,5 +80,23 @@ public class KitapService {
         if (kitapRepository.findById(id).isPresent()) {
             kitapRepository.deleteById(id);
         }
+    }
+
+    private boolean simpleTextSearch(char[] pattern, char[] text) {
+        int patternSize = pattern.length;
+        int textSize = text.length;
+
+        int i = 0;
+
+        while ((i + patternSize) <= textSize) {
+            int j = 0;
+            while (text[i + j] == pattern[j]) {
+                j += 1;
+                if (j >= patternSize)
+                    return true;
+            }
+            i += 1;
+        }
+        return false;
     }
 }

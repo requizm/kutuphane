@@ -21,11 +21,15 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" th:field="*{text}" oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required>
+                        <input type="text" th:field="*{text}" oninvalid="this.setCustomValidity('Lütfen doldurunuz')"
+                            required>
                     </td>
                 </tr>
                 <tr>
-                    <button type="submit">Arama Yap</button>
+                    <td>
+                        <button type="submit">Arama Yap</button>
+                    </td>
+
                 </tr>
             </table>
         </form>

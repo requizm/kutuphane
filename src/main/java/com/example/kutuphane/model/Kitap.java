@@ -20,10 +20,10 @@ public class Kitap {
     @Column(name = "ad", nullable = false, length = 25)
     private String ad;
 
-    @Column(name = "altAdi", nullable = true, length = 25)
+    @Column(name = "altAdi", nullable = false, length = 25)
     private String altAdi;
 
-    @Column(name = "seriAdi", nullable = true, length = 25)
+    @Column(name = "seriAdi", nullable = false, length = 25)
     private String seriAdi;
 
     @OneToOne
