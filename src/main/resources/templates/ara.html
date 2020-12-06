@@ -4,36 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Arama Yap</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
 </head>
 
 <body>
-    <div>
-        <h1>Arama Yap</h1>
-        <form action="#" th:action="@{/ara/islem}" th:object="${ara}" method="POST">
-            <table>
-                <tr>
-                    <td>
-                        <select th:field="*{i}">
-                            <option value="0">Kitap Adı</option>
-                            <option value="1">Seri Adı</option>
-                            <option value="2">Yazar</option>
-                            <option value="3">ISBN</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" th:field="*{text}" oninvalid="this.setCustomValidity('Lütfen doldurunuz')"
-                            required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit">Arama Yap</button>
-                    </td>
+    <div class="container">
+        <div class="form-control col-6 mx-auto">
+            <form action="#" th:action="@{/ara/islem}" th:object="${ara}" method="POST">
 
-                </tr>
-            </table>
-        </form>
+                <div class="form-group">
+                    <label for="typeSelect">Filtre</label>
+                    <select id="typeSelect" class="form-control" th:field="*{i}">
+                        <option value="0">Kitap Adı</option>
+                        <option value="1">Seri Adı</option>
+                        <option value="2">Yazar</option>
+                        <option value="3">ISBN</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="text">Aranacak Kelime</label>
+                    <input id="text" type="text" class="form-control" th:field="*{text}"
+                        oninvalid="this.setCustomValidity('Lütfen doldurunuz')" th:required="required">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Arama Yap</button>
+
+            </form>
+        </div>
     </div>
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
