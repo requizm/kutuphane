@@ -9,29 +9,29 @@
 
 <body>
 
-    <div>
-        <h1>Yayın Evleri</h1>
-        <table border="1">
-            <caption>Yayın Evleri</caption>
-            <thead>
-                <tr>
-                    <th>Yayınevi id</th>
-                    <th>Yayınevi Adı</th>
-                    <th>Yayınevi Açıklama</th>
-                    <th>İşlem</th>
+    <div class="container">
+        <div class="form-control col-10 mx-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Yayınevi id</th>
+                        <th>Yayınevi Adı</th>
+                        <th>Yayınevi Açıklama</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tr th:each="yayinevi : ${yayinevleri}">
+                    <td th:text="${yayinevi.id}">Yayınevi id</td>
+                    <td th:text="${yayinevi.ad}">Yayınevi Adı</td>
+                    <td th:text="${yayinevi.aciklama}">Yayınevi Açıklama</td>
+                    <td>
+                        <a th:href="@{'/yayinevi/guncelle/' + ${yayinevi.id}}">Guncelle</a>
+                        <a th:href="@{'/yayinevi/sil/' + ${yayinevi.id}}">Sil</a>
+                    </td>
                 </tr>
-            </thead>
-            <tr th:each="yayinevi : ${yayinevleri}">
-                <td th:text="${yayinevi.id}">Yayınevi id</td>
-                <td th:text="${yayinevi.ad}">Yayınevi Adı</td>
-                <td th:text="${yayinevi.aciklama}">Yayınevi Açıklama</td>
-                <td>
-                    <a th:href="@{'/yayinevi/guncelle/' + ${yayinevi.id}}">Guncelle</a>
-                    <a th:href="@{'/yayinevi/sil/' + ${yayinevi.id}}">Sil</a>
-                </td>
-            </tr>
-        </table>
-        <a href="/yayinevi/ekle"> Yayınevi Ekle</a>
+            </table>
+            <a href="/yayinevi/ekle"> Yayınevi Ekle</a>
+        </div>
     </div>
     <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>

@@ -9,29 +9,29 @@
 
 <body>
 
-    <div>
-        <h1>Yazarlar</h1>
-        <table border="1">
-            <caption>yazarlar</caption>
-            <thead>
-                <tr>
-                    <th>Yazar id</th>
-                    <th>Yazar Adı</th>
-                    <th>Yazar Açıklama</th>
-                    <th>İşlem</th>
+    <div class="container">
+        <div class="form-control col-10 mx-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Yazar id</th>
+                        <th>Yazar Adı</th>
+                        <th>Yazar Açıklama</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tr th:each="yazar : ${yazarlar}">
+                    <td th:text="${yazar.id}">Yazar id</td>
+                    <td th:text="${yazar.ad}">Yazar Adı</td>
+                    <td th:text="${yazar.aciklama}">Yazar Açıklama</td>
+                    <td>
+                        <a th:href="@{'/yazar/guncelle/' + ${yazar.id}}">Guncelle</a>
+                        <a th:href="@{'/yazar/sil/' + ${yazar.id}}">Sil</a>
+                    </td>
                 </tr>
-            </thead>
-            <tr th:each="yazar : ${yazarlar}">
-                <td th:text="${yazar.id}">Yazar id</td>
-                <td th:text="${yazar.ad}">Yazar Adı</td>
-                <td th:text="${yazar.aciklama}">Yazar Açıklama</td>
-                <td>
-                    <a th:href="@{'/yazar/guncelle/' + ${yazar.id}}">Guncelle</a>
-                    <a th:href="@{'/yazar/sil/' + ${yazar.id}}">Sil</a>
-                </td>
-            </tr>
-        </table>
-        <a href="/yazar/ekle"> Yazar Ekle</a>
+            </table>
+            <a href="/yazar/ekle"> Yazar Ekle</a>
+        </div>
     </div>
     <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
