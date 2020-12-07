@@ -2,6 +2,8 @@ package com.example.kutuphane.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.example.kutuphane.config.BadRequestException;
 import com.example.kutuphane.model.Kitap;
 import com.example.kutuphane.model.KitapDTO;
@@ -12,6 +14,7 @@ import com.example.kutuphane.service.YazarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,6 +60,16 @@ public class KitapController {
         return "kitap_ekle";
     }
 
+    @PostMapping(path = "ekle")
+    public String addKitap(@Valid @ModelAttribute("kitap") KitapDTO kitap, BindingResult br) {
+        if (br.hasErrors()) {
+            return "kitap_ekle";
+        }
+        kitapService.add(kitap.toKitap());
+        return "redirect:/kitap/";
+
+    }
+
     @GetMapping(path = "guncelle/{id}")
     public ModelAndView showKitapGuncelle(@PathVariable Integer id) {
         ModelAndView mav = new ModelAndView("kitap_guncelle");
@@ -70,10 +83,10 @@ public class KitapController {
         return mav;
     }
 
-    @PostMapping(path = "degistir")
-    public String updateKitap(@ModelAttribute("kitap") KitapDTO kitap) {
-        if (kitap == null || kitap.getYazar() == null || kitap.getYayinevi() == null) {
-            throw new BadRequestException();
+    @PostMapping(path = "guncelle")
+    public String updateKitap(@Valid @ModelAttribute("kitap") KitapDTO kitap, BindingResult br) {
+        if (br.hasErrors()) {
+            return "kitap_guncelle";
         }
         kitapService.update(kitap.toKitap());
         return "redirect:/kitap/";

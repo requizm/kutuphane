@@ -2,6 +2,8 @@ package com.example.kutuphane.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.example.kutuphane.config.BadRequestException;
 import com.example.kutuphane.model.Yayinevi;
 import com.example.kutuphane.model.YayineviDTO;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -30,20 +33,20 @@ public class YayinEviController {
         return "yayinevleri";
     }
 
-    @PostMapping(path = "yeni")
-    public String addYayinEvi(@ModelAttribute("yayinevi") YayineviDTO yayinevi) {
-        if (yayinevi == null) {
-            throw new BadRequestException();
-        }
-        yayineviService.add(yayinevi.toYayinevi());
-        return "redirect:/yayinevi/";
-    }
-
-    @RequestMapping(path = "ekle")
+    @GetMapping(path = "ekle")
     public String showYayineviEkle(Model model) {
         YayineviDTO yayinEvi = new YayineviDTO();
         model.addAttribute("yayinevi", yayinEvi);
         return "yayinevi_ekle";
+    }
+
+    @PostMapping(path = "ekle")
+    public String addYayinevi(@Valid @ModelAttribute("yayinevi") YayineviDTO yayinevi, BindingResult br) {
+        if (br.hasErrors()) {
+            return "yayinevi_ekle";
+        }
+        yayineviService.add(yayinevi.toYayinevi());
+        return "redirect:/yayinevi/";
     }
 
     @GetMapping(path = "guncelle/{id}")
@@ -57,16 +60,16 @@ public class YayinEviController {
         return mav;
     }
 
-    @PostMapping(path = "degistir")
-    public String updateYayinevi(@ModelAttribute("yayinevi") YayineviDTO yayinEvi) {
-        if (yayinEvi == null) {
-            throw new BadRequestException();
+    @PostMapping(path = "guncelle")
+    public String updateYayinevi(@Valid @ModelAttribute("yayinevi") YayineviDTO yayinEvi, BindingResult br) {
+        if (br.hasErrors()) {
+            return "yayinevi_guncelle";
         }
         yayineviService.update(yayinEvi.toYayinevi());
         return "redirect:/yayinevi/";
     }
 
-    @RequestMapping(path = "sil/{id}")
+    @GetMapping(path = "sil/{id}")
     public String deleteYayinevi(@PathVariable Integer id) {
         if (!yayineviService.get(id).isPresent()) {
             throw new BadRequestException();

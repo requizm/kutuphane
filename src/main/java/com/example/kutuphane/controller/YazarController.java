@@ -2,6 +2,8 @@ package com.example.kutuphane.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.example.kutuphane.config.BadRequestException;
 import com.example.kutuphane.model.Yazar;
 import com.example.kutuphane.model.YazarDTO;
@@ -10,6 +12,7 @@ import com.example.kutuphane.service.YazarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,20 +33,20 @@ public class YazarController {
         return "yazarlar";
     }
 
-    @PostMapping(path = "yeni")
-    public String addYazar(@ModelAttribute("yazar") YazarDTO yazar) {
-        if (yazar == null) {
-            throw new BadRequestException();
-        }
-        yazarService.add(yazar.toYazar());
-        return "redirect:/yazar/";
-    }
-
-    @RequestMapping(path = "ekle")
+    @GetMapping(path = "ekle")
     public String showYazarEkle(Model model) {
         YazarDTO yazar = new YazarDTO();
         model.addAttribute("yazar", yazar);
         return "yazar_ekle";
+    }
+
+    @PostMapping(path = "ekle")
+    public String addYazar(@Valid @ModelAttribute("yazar") YazarDTO yazar, BindingResult br) {
+        if (br.hasErrors()) {
+            return "yazar_ekle";
+        }
+        yazarService.add(yazar.toYazar());
+        return "redirect:/yazar/";
     }
 
     @GetMapping(path = "guncelle/{id}")
@@ -58,10 +61,10 @@ public class YazarController {
         return mav;
     }
 
-    @PostMapping(path = "degistir")
-    public String updateYazar(@ModelAttribute("yazar") YazarDTO yazar) {
-        if (yazar == null) {
-            throw new BadRequestException();
+    @PostMapping(path = "guncelle")
+    public String updateYazar(@Valid @ModelAttribute("yazar") YazarDTO yazar, BindingResult br) {
+        if (br.hasErrors()) {
+            return "yazar_guncelle";
         }
         yazarService.update(yazar.toYazar());
         return "redirect:/yazar/";

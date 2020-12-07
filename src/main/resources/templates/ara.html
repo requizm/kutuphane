@@ -24,8 +24,9 @@
 
                 <div class="form-group">
                     <label for="text">Aranacak Kelime</label>
-                    <input id="text" type="text" class="form-control" th:field="*{text}"
-                        oninvalid="this.setCustomValidity('Lütfen doldurunuz')" th:required="required">
+                    <input id="text" type="text" class="form-control" th:field="*{text}">
+                    <a th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Arama Sözcüğü
+                        Hatası></a>
                 </div>
 
                 <button class="btn btn-primary" type="submit">Arama Yap</button>

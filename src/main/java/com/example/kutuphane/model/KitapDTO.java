@@ -1,13 +1,38 @@
 package com.example.kutuphane.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public class KitapDTO {
     private Integer id;
+
+    @NotBlank(message = "Lütfen boş bırakmayınız")
+    @Length(max = 25, message = "25 karakterden az olmalıdır")
     private String ad;
+
+    @NotBlank(message = "Lütfen boş bırakmayınız")
+    @Length(max = 25, message = "25 karakterden az olmalıdır")
     private String altAdi;
+
+    @NotBlank(message = "Lütfen boş bırakmayınız")
+    @Length(max = 25, message = "25 karakterden az olmalıdır")
     private String seriAdi;
+
     private Yazar yazar;
+
     private Yayinevi yayinevi;
+
+    @NotBlank(message = "Lütfen boş bırakmayınız")
+    @Length(max = 13, min = 13, message = "13 karakter olmalıdır")
     private String isbnNumarasi;
+
+    @NotBlank(message = "Lütfen boş bırakmayınız")
+    @Length(max = 25, message = "25 karakterden az olmalıdır")
     private String aciklama;
 
     public KitapDTO() {

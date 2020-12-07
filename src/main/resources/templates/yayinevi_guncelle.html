@@ -4,39 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Yayınevi Güncelle</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
 </head>
 
 <body>
 
-    <div>
-        <h1>Yayınevi Güncelle</h1>
-        <br />
+    <div class="container">
+        <div class="form-control col-6 mx-auto">
+            <form action="#" th:action="@{/yayinevi/guncelle}" th:object="${yayinevi}" method="POST">
+                <div class="form-group" hidden>
+                    <label for="ad">Yayınevi id</label>
+                    <input id="id" type="text" class="form-control" th:field="*{id}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="ad">Yayınevi Adı</label>
+                    <input id="ad" type="text" class="form-control" th:field="*{ad}">
+                    <a th:if="${#fields.hasErrors('ad')}" th:errors="*{ad}">Ad
+                        Hatası></a>
+                </div>
+                <div class="form-group">
+                    <label for="aciklama">Yayınevi Açıklaması</label>
+                    <textarea id="aciklama" rows="2" class="form-control" th:field="*{aciklama}"></textarea>
+                    <a th:if="${#fields.hasErrors('aciklama')}" th:errors="*{aciklama}">Açıklama
+                        Hatası></a>
+                </div>
 
-        <form action="#" th:action="@{/yayinevi/degistir}" th:object="${yayinevi}" method="POST">
-            <table>
-                <tr>
-                    <td>Yayınevi id</td>
-                    <td><input type="text" th:field="*{id}" readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <td>Yayınevi Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{ad}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>Yayınevi Açıklaması</td>
-                    <td><input type="text" maxlength="45" th:field="*{aciklama}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit">Güncelle</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+
+            </form>
+        </div>
     </div>
-
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
 </body>
 
 </html>

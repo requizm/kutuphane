@@ -4,71 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Kitap Güncelle</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
 </head>
 
 <body>
 
-    <div>
-        <h1>Kitap Güncelle</h1>
-        <br />
+    <div class="container">
+        <div class="form-control col-6 mx-auto">
 
-        <form action="#" th:action="@{/kitap/degistir}" th:object="${kitap}" method="POST">
-            <table>
-                <tr>
-                    <td>Kitap id</td>
-                    <td><input type="text" th:field="*{id}" readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <td>Kitap Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{ad}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>Kitap Alt Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{altAdi}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>Kitap Seri Adı</td>
-                    <td><input type="text" maxlength="25" th:field="*{seriAdi}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>Yazar</td>
-                    <td>
-                        <select th:field="*{yazar}">
-                            <option th:each="yazarr : ${yazarlar}" th:value="${yazarr.id}" th:text="${yazarr.ad}" />
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Yayınevi</td>
-                    <td>
-                        <select th:field="*{yayinevi}">
-                            <option th:each="yayinevii : ${yayinevleri}" th:value="${yayinevii.id}"
-                                th:text="${yayinevii.ad}" />
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>ISBN</td>
-                    <td><input type="text" maxlength="13" th:field="*{isbnNumarasi}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>Kitap Açıklaması</td>
-                    <td><input type="text" maxlength="45" th:field="*{aciklama}"
-                            oninvalid="this.setCustomValidity('Lütfen doldurunuz')" required></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit">Güncelle</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+            <form action="#" th:action="@{/kitap/guncelle}" th:object="${kitap}" method="POST">
+
+                <div class="form-group" hidden>
+                    <label for="ad">Kitap id</label>
+                    <input id="ad" type="text" class="form-control" th:field="*{id}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="ad">Kitap Adı</label>
+                    <input id="ad" type="text" class="form-control" th:field="*{ad}">
+                    <a th:if="${#fields.hasErrors('ad')}" th:errors="*{ad}">Ad
+                        Hatası></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="altAd">Kitap Alt Adı</label><br>
+                    <input id="altAd" type="text" class="form-control" th:field="*{altAdi}">
+                    <a th:if="${#fields.hasErrors('altAdi')}" th:errors="*{altAdi}">Alt Ad
+                        Hatası></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="seriAd">Kitap Seri Adı</label><br>
+                    <input id="seriAd" type="text" class="form-control" th:field="*{seriAdi}">
+                    <a th:if="${#fields.hasErrors('seriAdi')}" th:errors="*{seriAdi}">Seri Adı
+                        Hatası></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="yazar">Yazar</label>
+                    <select id="yazar" class="form-control" th:field="*{yazar}">
+                        <option th:each="yazarr : ${yazarlar}" th:value="${yazarr.id}" th:text="${yazarr.ad}" />
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="yayinevi">Yayınevi</label>
+                    <select id="yayinevi" class="form-control" th:field="*{yayinevi}">
+                        <option th:each="yayinevii : ${yayinevleri}" th:value="${yayinevii.id}"
+                            th:text="${yayinevii.ad}" />
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="isbn">ISBN</label><br>
+                    <input id="isbn" type="text" class="form-control" th:field="*{isbnNumarasi}">
+                    <a th:if="${#fields.hasErrors('isbnNumarasi')}" th:errors="*{isbnNumarasi}">ISBN
+                        Hatası></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="aciklama">Açıklama</label><br>
+                    <textarea id="aciklama" rows="2" class="form-control" th:field="*{aciklama}"></textarea>
+                    <a th:if="${#fields.hasErrors('aciklama')}" th:errors="*{aciklama}">Açıklama
+                        Hatası></a>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Güncelle</button>
+
+            </form>
+        </div>
     </div>
-
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
