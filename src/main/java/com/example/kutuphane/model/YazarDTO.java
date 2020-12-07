@@ -1,6 +1,5 @@
 package com.example.kutuphane.model;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
