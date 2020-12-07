@@ -61,8 +61,10 @@ public class KitapController {
     }
 
     @PostMapping(path = "ekle")
-    public String addKitap(@Valid @ModelAttribute("kitap") KitapDTO kitap, BindingResult br) {
+    public String addKitap(@Valid @ModelAttribute("kitap") KitapDTO kitap, BindingResult br, Model model) {
         if (br.hasErrors()) {
+            model.addAttribute("yayinevleri", yayineviService.getAll());
+            model.addAttribute("yazarlar", yazarService.getAll());
             return "kitap_ekle";
         }
         kitapService.add(kitap.toKitap());
@@ -84,8 +86,10 @@ public class KitapController {
     }
 
     @PostMapping(path = "guncelle")
-    public String updateKitap(@Valid @ModelAttribute("kitap") KitapDTO kitap, BindingResult br) {
+    public String updateKitap(@Valid @ModelAttribute("kitap") KitapDTO kitap, BindingResult br, Model model) {
         if (br.hasErrors()) {
+            model.addAttribute("yayinevleri", yayineviService.getAll());
+            model.addAttribute("yazarlar", yazarService.getAll());
             return "kitap_guncelle";
         }
         kitapService.update(kitap.toKitap());
