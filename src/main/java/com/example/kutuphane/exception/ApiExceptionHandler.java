@@ -1,4 +1,4 @@
-package com.example.kutuphane.config;
+package com.example.kutuphane.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yayınevi Ekle</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+</head>
+
+<body>
+
+    <div class="container">
+        <h4>
+            <a th:href="@{/oauth2/authorization/github}">Github ile giriş yap</a>
+        </h4>
+        <div class="form-control col-6 mx-auto">
+            <form method="POST" th:action="@{/login}">
+                <fieldset>
+                    <div th:if="${param.error}" class="alert alert-error">
+                        Eposta ya da şifre yanlış
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="text" name="email" class="form-control">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="sifre">Şifre</label>
+                        <input id="sifre" type="password" name="sifre" class="form-control" />
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Giriş</button>
+                </fieldset>
+            </form>
+            <a th:href="@{/register}">Kayıt Ol</a>
+        </div>
+    </div>
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

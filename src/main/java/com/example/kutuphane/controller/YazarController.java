@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.example.kutuphane.config.BadRequestException;
+import com.example.kutuphane.exception.BadRequestException;
 import com.example.kutuphane.model.Yazar;
 import com.example.kutuphane.model.YazarDTO;
 import com.example.kutuphane.service.YazarService;

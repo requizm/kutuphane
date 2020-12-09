@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.example.kutuphane.config.BadRequestException;
+import com.example.kutuphane.exception.BadRequestException;
 import com.example.kutuphane.model.Yayinevi;
 import com.example.kutuphane.model.YayineviDTO;
 import com.example.kutuphane.service.YayineviService;

@@ -9,7 +9,10 @@
 
 <body>
     <div>
-        <h1>Anasayfa</h1>
+        <div sec:authorize="isAuthenticated()">
+            <a style="color: red;" href="/logout">Çıkış Yap</a>
+        </div>
+
         <table>
             <tr>
                 <td><a href="/yazar"> Yazar İşlemleri</a></th>

@@ -1,4 +1,4 @@
-package com.example.kutuphane.config;
+package com.example.kutuphane.exception;
 
 public class BadRequestException extends RuntimeException {
     public BadRequestException() {

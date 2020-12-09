@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yayınevi Ekle</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-control col-6 mx-auto">
+            <form method="POST" th:action="@{/register}" th:object="${kullanici}">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" th:field="*{email}" />
+                        <a th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Açıklama
+                            Hatası></a>
+                    </div>
+                    <div class="form-group">
+                        <label for="sifre">Şifre</label>
+                        <input type="password" class="form-control" th:field="*{sifre}" />
+                        <a th:if="${#fields.hasErrors('sifre')}" th:errors="*{sifre}">Açıklama
+                            Hatası></a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
