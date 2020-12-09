@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 @Component
-public class Oauth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Autowired
     private KullaniciService kullaniciService;
@@ -26,7 +26,7 @@ public class Oauth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
 
-        CustomOauth2User oauth2User = (CustomOauth2User) authentication.getPrincipal();
+        CustomOAuth2User oauth2User = (CustomOAuth2User) authentication.getPrincipal();
         String email = oauth2User.getEmail();
 
         if (!kullaniciService.kullaniciMevcutMu(email)) {

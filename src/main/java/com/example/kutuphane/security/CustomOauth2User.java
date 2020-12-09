@@ -6,11 +6,11 @@ import java.util.Map;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-public class CustomOauth2User implements OAuth2User {
+public class CustomOAuth2User implements OAuth2User {
 
     private OAuth2User user;
 
-    public CustomOauth2User(OAuth2User user) {
+    public CustomOAuth2User(OAuth2User user) {
         this.user = user;
     }
 

@@ -1,9 +1,9 @@
 package com.example.kutuphane.config;
 
-import com.example.kutuphane.security.CustomOauth2UserService;
+import com.example.kutuphane.security.CustomOAuth2UserService;
 import com.example.kutuphane.security.MyUserDetailsService;
-import com.example.kutuphane.security.Oauth2LoginFailureHandler;
-import com.example.kutuphane.security.Oauth2LoginSuccessHandler;
+import com.example.kutuphane.security.OAuth2LoginFailureHandler;
+import com.example.kutuphane.security.OAuth2LoginSuccessHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +20,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomOauth2UserService customOauth2UserService;
+    private CustomOAuth2UserService customOAuth2UserService;
 
     @Autowired
-    private Oauth2LoginSuccessHandler oauth2LoginSuccessHandler;
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Autowired
-    private Oauth2LoginFailureHandler oauth2LoginFailureHandler;
+    private OAuth2LoginFailureHandler oAuth2LoginFailureHandler;
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
@@ -36,37 +36,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web
-            .ignoring()
-            .antMatchers("/resources/**", "/static/**","/webjars/**");
+        web.ignoring().antMatchers("/resources/**", "/static/**", "/webjars/**");
     }
 
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-        .antMatchers("/", "/oauth2/**", "/register").permitAll()
-        .antMatchers("/yazar/**", "/yayinevi/**").hasAnyRole("USER", "ADMIN")
-        .antMatchers("/kitap/**", "/ara/**").hasRole("ADMIN").anyRequest().authenticated()
-        .and()
-            .formLogin().loginPage("/login")
-            .usernameParameter("email").passwordParameter("sifre").permitAll()
-            .defaultSuccessUrl("/")
-        .and()
-        .oauth2Login().loginPage("/login").userInfoEndpoint().userService(customOauth2UserService)
-        .and().successHandler(oauth2LoginSuccessHandler).failureHandler(oauth2LoginFailureHandler)
-        .and()
-        .logout().logoutSuccessUrl("/").logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        .invalidateHttpSession(true).deleteCookies("JSESSIONID");
+        http.authorizeRequests().antMatchers("/", "/oauth2/**", "/register").permitAll()
+                .antMatchers("/yazar/**", "/yayinevi/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/kitap/**", "/ara/**").hasRole("ADMIN").anyRequest().authenticated().and().formLogin()
+                .loginPage("/login").usernameParameter("email").passwordParameter("sifre").permitAll()
+                .defaultSuccessUrl("/").and().oauth2Login().loginPage("/login").userInfoEndpoint()
+                .userService(customOAuth2UserService).and().successHandler(oAuth2LoginSuccessHandler)
+                .failureHandler(oAuth2LoginFailureHandler).and().logout().logoutSuccessUrl("/")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-         auth
-        .userDetailsService(myUserDetailsService)
-        .passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 }
