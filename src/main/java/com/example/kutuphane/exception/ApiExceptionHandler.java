@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ApiExceptionHandler {
     @ExceptionHandler({ BadRequestException.class })
     public String entityNotFound() {
-        return "/hata";
+        return "error";
     }
 }
