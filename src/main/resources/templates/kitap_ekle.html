@@ -40,6 +40,8 @@
                     <select id="yazar" class="form-control" th:field="*{yazar}">
                         <option th:each="yazarr : ${yazarlar}" th:value="${yazarr.id}" th:text="${yazarr.ad}" />
                     </select>
+                    <a th:if="${#fields.hasErrors('yazar')}" th:errors="*{yazar}">Yazar
+                        Hatası></a>
                 </div>
 
                 <div class="form-group">
@@ -48,6 +50,8 @@
                         <option th:each="yayinevii : ${yayinevleri}" th:value="${yayinevii.id}"
                             th:text="${yayinevii.ad}" />
                     </select>
+                    <a th:if="${#fields.hasErrors('yayinevi')}" th:errors="*{yayinevi}">Yayınevi
+                        Hatası></a>
                 </div>
 
                 <div class="form-group">

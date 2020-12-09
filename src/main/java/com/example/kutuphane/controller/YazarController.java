@@ -1,7 +1,5 @@
 package com.example.kutuphane.controller;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import com.example.kutuphane.exception.BadRequestException;
@@ -52,12 +50,11 @@ public class YazarController {
     @GetMapping(path = "guncelle/{id}")
     public ModelAndView showYazarGuncelle(@PathVariable Integer id) {
         ModelAndView mav = new ModelAndView("yazar_guncelle");
-
-        Optional<Yazar> yazar = yazarService.get(id);
-        if (!yazar.isPresent()) {
+        if (!yazarService.yazarMevcutMu(id)) {
             throw new BadRequestException();
         }
-        mav.addObject("yazar", yazar.get().toYazarDTO());
+        Yazar yazar = yazarService.get(id);
+        mav.addObject("yazar", yazar.toYazarDTO());
         return mav;
     }
 
@@ -72,7 +69,7 @@ public class YazarController {
 
     @RequestMapping(path = "sil/{id}")
     public String deleteYazar(@PathVariable Integer id) {
-        if (!yazarService.get(id).isPresent()) {
+        if (!yazarService.yazarMevcutMu(id)) {
             throw new BadRequestException();
         }
         yazarService.delete(id);

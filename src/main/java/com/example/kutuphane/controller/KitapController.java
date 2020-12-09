@@ -1,7 +1,5 @@
 package com.example.kutuphane.controller;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import com.example.kutuphane.exception.BadRequestException;
@@ -41,16 +39,6 @@ public class KitapController {
         return "kitaplar";
     }
 
-    @PostMapping(path = "yeni")
-    public String addKitap(@ModelAttribute("kitap") KitapDTO kitap) {
-        if (kitap == null || kitap.getYazar() == null || kitap.getYayinevi() == null) {
-            throw new BadRequestException();
-        }
-        kitapService.add(kitap.toKitap());
-        return "redirect:/kitap/";
-
-    }
-
     @RequestMapping(path = "ekle")
     public String showKitapEkle(Model model) {
         KitapDTO kitap = new KitapDTO();
@@ -75,11 +63,11 @@ public class KitapController {
     @GetMapping(path = "guncelle/{id}")
     public ModelAndView showKitapGuncelle(@PathVariable Integer id) {
         ModelAndView mav = new ModelAndView("kitap_guncelle");
-        Optional<Kitap> kitap = kitapService.get(id);
-        if (!kitap.isPresent()) {
+        if (!kitapService.kitapMevcutMu(id)) {
             throw new BadRequestException();
         }
-        mav.addObject("kitap", kitap.get().toKitapDTO());
+        Kitap kitap = kitapService.get(id);
+        mav.addObject("kitap", kitap.toKitapDTO());
         mav.addObject("yayinevleri", yayineviService.getAll());
         mav.addObject("yazarlar", yazarService.getAll());
         return mav;
@@ -98,7 +86,7 @@ public class KitapController {
 
     @RequestMapping(path = "sil/{id}")
     public String deleteKitap(@PathVariable Integer id) {
-        if (!kitapService.get(id).isPresent()) {
+        if (!kitapService.kitapMevcutMu(id)) {
             throw new BadRequestException();
         }
         kitapService.delete(id);

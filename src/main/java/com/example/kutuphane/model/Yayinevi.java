@@ -21,13 +21,18 @@ public class Yayinevi {
     @Column(name = "aciklama", nullable = false, length = 45)
     private String aciklama;
 
-    public Yayinevi(Integer id, String ad, String aciklama) {
-        this.id = id;
+    public Yayinevi() {
+    }
+
+    public Yayinevi(String ad, String aciklama) {
         this.ad = ad;
         this.aciklama = aciklama;
     }
 
-    public Yayinevi() {
+    public Yayinevi(Integer id, String ad, String aciklama) {
+        this.id = id;
+        this.ad = ad;
+        this.aciklama = aciklama;
     }
 
     public Integer getId() {

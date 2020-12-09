@@ -24,7 +24,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        Kullanici kullanici = kullaniciService.kullaniciyiGetir(email);
+        Kullanici kullanici = kullaniciService.get(email);
         List<GrantedAuthority> authorities = getUserAuthority(kullanici.getRol());
         return buildUserForAuthentication(kullanici, authorities);
     }

@@ -43,6 +43,17 @@ public class Kitap {
     public Kitap() {
     }
 
+    public Kitap(String ad, String altAdi, String seriAdi, Yazar yazar, Yayinevi yayinevi, String isbnNumarasi,
+            String aciklama) {
+        this.ad = ad;
+        this.altAdi = altAdi;
+        this.seriAdi = seriAdi;
+        this.yazar = yazar;
+        this.yayinevi = yayinevi;
+        this.isbnNumarasi = isbnNumarasi;
+        this.aciklama = aciklama;
+    }
+
     public Kitap(Integer id, String ad, String altAdi, String seriAdi, Yazar yazar, Yayinevi yayinevi,
             String isbnNumarasi, String aciklama) {
         this.id = id;

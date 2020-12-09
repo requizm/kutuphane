@@ -25,8 +25,8 @@ public class KullaniciService {
     }
 
     @PostConstruct
-    private void addRoot(){
-        if(!kullaniciMevcutMu("root@root.com")){
+    private void addRoot() {
+        if (!kullaniciMevcutMu("root@root.com")) {
             Kullanici kullanici = new Kullanici();
             kullanici.setEmail("root@root.com");
             kullanici.setRol(Roller.ROLE_ADMIN);
@@ -49,23 +49,15 @@ public class KullaniciService {
     }
 
     public boolean kullaniciMevcutMu(String email) {
-        List<Kullanici> kullanicilar = kullaniciRepository.findAll();
-        for (int i = 0; i < kullanicilar.size(); i++) {
-            if (kullanicilar.get(i).getEmail().equals(email)) {
-                return true;
-            }
-        }
-        return false;
+        List<Kullanici> kullanicilar = kullaniciRepository.findByEmail(email);
+        return !kullanicilar.isEmpty();
     }
 
-    public Kullanici kullaniciyiGetir(String email) {
-        List<Kullanici> kullanicilar = kullaniciRepository.findAll();
-        for (int i = 0; i < kullanicilar.size(); i++) {
-            if (kullanicilar.get(i).getEmail().equals(email)) {
-                return kullanicilar.get(i);
-            }
+    public Kullanici get(String email) {
+        if (kullaniciMevcutMu(email)) {
+            return kullaniciRepository.findByEmail(email).get(0);
         }
-        return new Kullanici();
+        return null;
     }
 
     public void add(Kullanici kullanici) {

@@ -19,8 +19,16 @@ public class KitapService {
         return kitapRepository.findAll();
     }
 
-    public Optional<Kitap> get(Integer id) {
-        return kitapRepository.findById(id);
+    public Kitap get(Integer id) {
+        if (kitapMevcutMu(id)) {
+            return kitapRepository.findById(id).get();
+        }
+        return null;
+    }
+
+    public boolean kitapMevcutMu(Integer id) {
+        Optional<Kitap> kitap = kitapRepository.findById(id);
+        return kitap.isPresent();
     }
 
     public void add(Kitap yayinEvi) {

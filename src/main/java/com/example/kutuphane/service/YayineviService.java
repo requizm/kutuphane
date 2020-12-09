@@ -23,8 +23,16 @@ public class YayineviService {
         return yayineviRepository.findAll();
     }
 
-    public Optional<Yayinevi> get(Integer id) {
-        return yayineviRepository.findById(id);
+    public Yayinevi get(Integer id) {
+        if (yayineviMevcutMu(id)) {
+            return yayineviRepository.findById(id).get();
+        }
+        return null;
+    }
+
+    public boolean yayineviMevcutMu(Integer id) {
+        Optional<Yayinevi> yayinevi = yayineviRepository.findById(id);
+        return yayinevi.isPresent();
     }
 
     public void add(Yayinevi yayinEvi) {

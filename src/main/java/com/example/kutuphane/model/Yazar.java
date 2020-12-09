@@ -21,13 +21,18 @@ public class Yazar {
     @Column(name = "aciklama", nullable = false, length = 45)
     private String aciklama;
 
-    public Yazar(Integer id, String ad, String aciklama) {
-        this.id = id;
+    public Yazar() {
+    }
+
+    public Yazar(String ad, String aciklama) {
         this.ad = ad;
         this.aciklama = aciklama;
     }
 
-    public Yazar() {
+    public Yazar(Integer id, String ad, String aciklama) {
+        this.id = id;
+        this.ad = ad;
+        this.aciklama = aciklama;
     }
 
     public Integer getId() {

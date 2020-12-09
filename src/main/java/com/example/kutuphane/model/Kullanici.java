@@ -32,6 +32,13 @@ public class Kullanici {
     public Kullanici() {
     }
 
+    public Kullanici(String email, String sifre, Roller rol, HesapTurleri hesap) {
+        this.email = email;
+        this.sifre = sifre;
+        this.rol = rol;
+        this.hesap = hesap;
+    }
+
     public Kullanici(Integer id, String email, String sifre, Roller rol, HesapTurleri hesap) {
         this.id = id;
         this.email = email;

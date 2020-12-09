@@ -24,8 +24,16 @@ public class YazarService {
         return yazarRepository.findAll();
     }
 
-    public Optional<Yazar> get(Integer id) {
-        return yazarRepository.findById(id);
+    public Yazar get(Integer id) {
+        if (yazarMevcutMu(id)) {
+            return yazarRepository.findById(id).get();
+        }
+        return null;
+    }
+
+    public boolean yazarMevcutMu(Integer id) {
+        Optional<Yazar> yazar = yazarRepository.findById(id);
+        return yazar.isPresent();
     }
 
     public void add(Yazar yazar) {

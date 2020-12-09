@@ -21,8 +21,10 @@ public class KitapDTO {
     @Length(max = 25, message = "25 karakterden az olmalıdır")
     private String seriAdi;
 
+    @NotBlank(message = "Lütfen boş bırakmayınız")
     private Yazar yazar;
-
+    
+    @NotBlank(message = "Lütfen boş bırakmayınız")
     private Yayinevi yayinevi;
 
     @NotBlank(message = "Lütfen boş bırakmayınız")
