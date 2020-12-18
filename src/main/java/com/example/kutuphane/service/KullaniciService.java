@@ -60,10 +60,17 @@ public class KullaniciService {
         return null;
     }
 
-    public void add(Kullanici kullanici) {
-        kullanici.setSifre(bCryptPasswordEncoder().encode(kullanici.getSifre()));
-        kullanici.setRol(Roller.ROLE_ADMIN);
+    public void addForUser(Kullanici kullanici) {
         kullanici.setHesap(HesapTurleri.LOCAL);
+        kullanici.setRol(Roller.ROLE_USER);
+        kullanici.setSifre(bCryptPasswordEncoder().encode(kullanici.getSifre()));
+        kullaniciRepository.save(kullanici);
+    }
+
+    public void addForGithub(Kullanici kullanici) {
+        kullanici.setHesap(HesapTurleri.GITHUB);
+        kullanici.setRol(Roller.ROLE_USER);
+        kullanici.setSifre("github");
         kullaniciRepository.save(kullanici);
     }
 

@@ -2,7 +2,9 @@ package com.example.kutuphane.controller;
 
 import javax.validation.Valid;
 
+import com.example.kutuphane.model.HesapTurleri;
 import com.example.kutuphane.model.KullaniciDTO;
+import com.example.kutuphane.model.Roller;
 import com.example.kutuphane.service.KullaniciService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,7 @@ public class RegisterController {
             return "register";
         }
         if (!kullaniciService.kullaniciMevcutMu(kullanici.toKullanici())) {
-            kullaniciService.add(kullanici.toKullanici());
+            kullaniciService.addForUser(kullanici.toKullanici());
             return "redirect:/login";
         }
         return "register";

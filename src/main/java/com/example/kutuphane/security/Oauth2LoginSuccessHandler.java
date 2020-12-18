@@ -32,12 +32,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         if (!kullaniciService.kullaniciMevcutMu(email)) {
             Kullanici kullanici = new Kullanici();
             kullanici.setEmail(email);
-            kullanici.setSifre("github");
-            kullanici.setRol(Roller.ROLE_USER);
-            kullanici.setHesap(HesapTurleri.GITHUB);
             
-            
-            kullaniciService.add(kullanici);
+            kullaniciService.addForGithub(kullanici);
         } else {
             
         }
